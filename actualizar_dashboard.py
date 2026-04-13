@@ -22,9 +22,9 @@ from datetime import datetime
 EXCEL_FILE     = "Busquedas_Activas_RRHH.xlsx"   # Nombre del archivo Excel
 FECHA_INICIO   = "2026-03-20"                      # Fecha inicio del periodo
 FECHA_FIN      = datetime.today().strftime("%Y-%m-%d")  # Hoy automatico
-REPO_PATH      = r"C:\ruta\a\tu\repositorio"       # Ruta local del repositorio GitHub
-GITHUB_USER    = "tu_usuario"                      # Tu usuario de GitHub
-GITHUB_REPO    = "nombre_del_repo"                 # Nombre del repositorio
+REPO_PATH   = r"C:\Users\Admin\Desktop\metricas-repo"
+GITHUB_USER = "ChiaraDCAC"
+GITHUB_REPO = "metricas"
 
 # ============================================================
 
