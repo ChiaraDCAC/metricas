@@ -56,10 +56,10 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font
     <div class="kpi"><div class="kpi-lbl">Clicks aplicar</div><div class="kpi-val blue">564</div><div class="kpi-sub">apply_click</div></div>
     <div class="kpi"><div class="kpi-lbl">Aplicantes</div><div class="kpi-val blue">315</div><div class="kpi-sub">formulario completado</div></div>
   </div>
-  <div class="sec">Tráfico diario</div>
+  <div class="sec">Tráfico semanal</div>
   <div class="g2">
-    <div class="card"><div class="ct">Visitantes únicos por día · media 47.2</div><div class="chart-wrap" style="height:260px"><canvas id="c1"></canvas></div></div>
-    <div class="card"><div class="ct">Eventos por tipo y día</div><div class="chart-wrap" style="height:260px"><canvas id="c2"></canvas></div></div>
+    <div class="card"><div class="ct">Visitantes únicos por semana</div><div class="chart-wrap" style="height:260px"><canvas id="c1"></canvas></div></div>
+    <div class="card"><div class="ct">Eventos por tipo y semana</div><div class="chart-wrap" style="height:260px"><canvas id="c2"></canvas></div></div>
   </div>
   <div class="sec">Conversión & aplicantes</div>
   <div class="g2">
@@ -74,9 +74,17 @@ body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font
 </div>
 <script>
 const C={blue:'#3879a3',pale:'#b5d4f4',accent:'#0c447c',muted:'#7a93aa',grid:'#eef2f7'};
-const days=['20 Mar', '21 Mar', '22 Mar', '23 Mar', '24 Mar', '25 Mar', '26 Mar', '27 Mar', '28 Mar', '29 Mar', '30 Mar', '31 Mar', '01 Abr', '02 Abr', '03 Abr', '04 Abr', '05 Abr', '06 Abr', '07 Abr', '08 Abr', '09 Abr', '10 Abr', '11 Abr', '12 Abr'],uniq=[160, 37, 12, 78, 24, 45, 26, 86, 10, 14, 130, 38, 177, 43, 33, 11, 25, 57, 46, 24, 20, 21, 8, 7],media=47.2;
-new Chart(document.getElementById('c1'),{type:'bar',data:{labels:days,datasets:[{data:uniq,backgroundColor:uniq.map((v,i)=>v===Math.max(...uniq)?C.accent:C.pale),borderRadius:4,borderSkipped:false,order:1},{type:'line',label:'Media ('+media+')',data:uniq.map(()=>media),borderColor:C.accent,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:10},boxWidth:10,padding:10,color:C.muted}}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:C.muted,maxRotation:45}},y:{grid:{color:C.grid},ticks:{font:{size:10},color:C.muted}}}}});
-new Chart(document.getElementById('c2'),{type:'bar',data:{labels:days,datasets:[{label:'view_job',data:[399, 81, 57, 136, 59, 117, 60, 217, 38, 38, 303, 92, 312, 72, 40, 41, 40, 125, 125, 70, 31, 65, 4, 10],backgroundColor:C.blue,borderRadius:3,borderSkipped:false},{label:'page_view',data:[198, 52, 16, 99, 30, 58, 32, 108, 14, 18, 184, 41, 209, 56, 38, 11, 30, 73, 55, 30, 26, 24, 10, 10],backgroundColor:C.pale,borderRadius:3,borderSkipped:false},{label:'apply_click',data:[31, 12, 5, 8, 1, 13, 5, 78, 0, 5, 185, 46, 65, 21, 15, 0, 8, 30, 10, 10, 9, 5, 0, 2],backgroundColor:C.accent,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:10},boxWidth:10,padding:10,color:C.muted}}},scales:{x:{grid:{display:false},ticks:{font:{size:9},color:C.muted,maxRotation:45}},y:{grid:{color:C.grid},ticks:{font:{size:10},color:C.muted}}}}});
+const weeks=['Sem 1\n20-26 mar','Sem 2\n27 mar-2 abr','Sem 3\n3-9 abr','Sem 4\n10-12 abr'];
+const wuniq=[355,478,202,35];
+new Chart(document.getElementById('c1'),{type:'bar',data:{labels:weeks,datasets:[
+  {data:wuniq,backgroundColor:wuniq.map(v=>v===Math.max(...wuniq)?C.accent:C.pale),borderRadius:4,borderSkipped:false,order:1},
+  {type:'line',label:'Media (267)',data:wuniq.map(()=>267),borderColor:C.accent,borderWidth:2,borderDash:[5,4],pointRadius:0,fill:false,order:0}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:10},boxWidth:10,padding:10,color:C.muted}}},scales:{x:{grid:{display:false},ticks:{font:{size:11},color:C.muted}},y:{grid:{color:C.grid},ticks:{font:{size:10},color:C.muted}}}}});
+new Chart(document.getElementById('c2'),{type:'bar',data:{labels:weeks,datasets:[
+  {label:'view_job',   data:[909,1072,472,79], backgroundColor:C.blue,   borderRadius:3,borderSkipped:false},
+  {label:'page_view',  data:[485,630,263,44],  backgroundColor:C.pale,   borderRadius:3,borderSkipped:false},
+  {label:'apply_click',data:[75,400,82,7],     backgroundColor:C.accent, borderRadius:3,borderSkipped:false}
+]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,position:'bottom',labels:{font:{size:10},boxWidth:10,padding:10,color:C.muted}}},scales:{x:{grid:{display:false},ticks:{font:{size:11},color:C.muted}},y:{grid:{color:C.grid},ticks:{font:{size:10},color:C.muted}}}}});
 const cv=[61.3, 55.6, 47.9, 49.1, 41.3, 34.6, 29.2, 14.9, 15.2, 9.2],cl=['Analista de Legales', 'Analista de Mercados', 'Op. Comerciales', 'Coord. Reclutamiento', 'Reclutamiento y Sel.', 'Pasante Finanzas', 'Atención al Cliente', 'Analista Producto Jr.', 'Regional Comercial', 'Gerente Unidad Fin.'],cvs=[106, 196, 265, 167, 126, 162, 236, 228, 125, 109];
 new Chart(document.getElementById('c3'),{type:'bar',data:{labels:cl,datasets:[{data:cv,backgroundColor:cv.map(v=>v>=40?C.accent:C.pale),borderRadius:3,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.raw}% · ${cvs[ctx.dataIndex]} vistas`}}},scales:{x:{grid:{color:C.grid},ticks:{callback:v=>v+'%',font:{size:10},color:C.muted},max:70},y:{grid:{display:false},ticks:{font:{size:10},color:C.muted}}}}});
 const pl=['Coord. Reclutamiento', 'Atención al Cliente', 'Reclutamiento y Sel.', 'Op. Comerciales', 'Pasante Finanzas', 'Analista de Mercados', 'Regional Comercial', 'Analista Producto Jr.', 'Regional Comercial*', 'Analista de Legales', 'Paid Media', 'Gerente Unidad Fin.', 'Dev. Back End', 'DevOps', 'PHP Developer', 'React Native'],pv=[72, 42, 41, 31, 24, 23, 23, 19, 12, 8, 8, 4, 3, 3, 1, 1];
